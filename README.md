@@ -12,6 +12,8 @@ TIDAL is a VR-based scientific paradigm investigating the relationship between *
 
 This repository contains the full data processing pipeline — from raw multi-modal recordings (LSL, Unity, Polar ECG, Eye-tracking, EMA) through BIDS-compliant preprocessing to time-synchronized feature extraction and segmentation for statistical analysis.
 
+The VR task was developed using the [EDIA framework](https://edia-toolbox.github.io/), which provides reusable architectural patterns and components for XR experiments. EDIA reduced implementation overhead by handling core infrastructure, enabling focus on study-specific interaction logic and Unity scene configuration while maintaining a maintainable project structure.
+
 > [!IMPORTANT]
 > **Data Privacy**: This repository is for **code and documentation only**. Participant data (raw or processed) is strictly confidential and excluded via `.gitignore`.
 
@@ -91,6 +93,7 @@ The scripts in `code/` form a sequential pipeline. Each stage produces BIDS-form
 | `generate_trials_tidal.py` | Generates randomized, balanced trial lists for Unity with anti-repetition constraints. Supports incremental participant folder creation. |
 | `inspect_xdf.py` | Diagnostic tool for raw XDF files — verifies stream presence, sampling rates, and data integrity after recording. |
 | `merge_interrupted_session.py` | Merges separate recording files from interrupted sessions (e.g., sub-12P) into a single continuous dataset. |
+| `systole_editor_fixed.py` | Patch utility for ECG R-peak correction in systole when using the BBSIG ECG preprocessing pipeline. adjustment of sampling frequency and decim parameters. |
 
 ---
 
@@ -142,8 +145,9 @@ python code/lsl_preproc.py
 python code/vr_preproc.py
 python code/questionnaire_preproc.py
 
-# Step 2: ECG preprocessing (interactive notebook)
-use BBSIG ECG Preprocessing pipeline from https://martager.github.io/bbsig/
+# Step 2: ECG preprocessing (recommended)
+# Apply BBSIG ECG preprocessing pipeline from https://martager.github.io/bbsig/
+# For R-peak correction assistance, use systole_editor_fixed.py
 
 # Step 3: Feature extraction & segmentation
 python code/segmenting.py
