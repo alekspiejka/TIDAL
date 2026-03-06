@@ -29,7 +29,7 @@ This project depends on several external tools and frameworks for data acquisiti
 | **BrainVision LSL Viewer** | Real-time visualization of LSL signal streams | [BrainProducts Downloads](https://www.brainproducts.com/downloads/more-software/) |
 | **BBSIG** | ECG preprocessing, R-peak detection & correction | [https://martager.github.io/bbsig/](https://martager.github.io/bbsig/) |
 
-> **Note on BBSIG**: After running BBSIG's ECG preprocessing pipeline, use `systole_editor_fixed.py` (included in this repo) to correct R-peak timing if needed. See [Processing Pipeline](#processing-pipeline) for details.
+> **Note on BBSIG**: When running BBSIG's ECG preprocessing pipeline, use `systole_editor_fixed.py` (included in this repo) to adjust for specific sampling frequency of the PolaeH10 device. See [Processing Pipeline](#processing-pipeline) for details.
 
 ---
 
