@@ -12,10 +12,24 @@ TIDAL is a VR-based scientific paradigm investigating the relationship between *
 
 This repository contains the full data processing pipeline — from raw multi-modal recordings (LSL, Unity, Polar ECG, Eye-tracking, EMA) through BIDS-compliant preprocessing to time-synchronized feature extraction and segmentation for statistical analysis.
 
-The VR task was developed using the [EDIA framework](https://edia-toolbox.github.io/), which provides reusable architectural patterns and components for XR experiments. EDIA reduced implementation overhead by handling core infrastructure, enabling focus on study-specific interaction logic and Unity scene configuration while maintaining a maintainable project structure.
-
 > [!IMPORTANT]
 > **Data Privacy**: This repository is for **code and documentation only**. Participant data (raw or processed) is strictly confidential and excluded via `.gitignore`.
+
+---
+
+## External Tools & Repositories
+
+This project depends on several external tools and frameworks for data acquisition, preprocessing, and real-time visualization. **Install and configure these before running the pipeline:**
+
+| Tool | Purpose | Link |
+|---|---|---|
+| **EDIA Framework** | VR paradigm architecture and XR experiment infrastructure | [https://edia-toolbox.github.io/](https://edia-toolbox.github.io/) |
+| **Polar2LSL** | Streams ECG data from Polar H10 to LSL | [https://markspan.github.io/Polar/](https://markspan.github.io/Polar/) |
+| **LabRecorder** | Records LSL streams to `.xdf` files | [GitHub Releases](https://github.com/labstreaminglayer/App-LabRecorder/releases) |
+| **BrainVision LSL Viewer** | Real-time visualization of LSL signal streams | [BrainProducts Downloads](https://www.brainproducts.com/downloads/more-software/) |
+| **BBSIG** | ECG preprocessing, R-peak detection & correction | [https://martager.github.io/bbsig/](https://martager.github.io/bbsig/) |
+
+> **Note on BBSIG**: After running BBSIG's ECG preprocessing pipeline, use `systole_editor_fixed.py` (included in this repo) to correct R-peak timing if needed. See [Processing Pipeline](#processing-pipeline) for details.
 
 ---
 
