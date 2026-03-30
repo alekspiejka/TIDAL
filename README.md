@@ -53,12 +53,12 @@ After the VR task, participants complete a battery of standardized online questi
 | Name | Main variable(s) measured |
 |---|---|
 | Demographics | Age, Sex, VR experience, coffeine intake |
-| [Simulation Sickness Questionnaire] (link) | Discomfort, nausea, dizziness, headache, blurred vision, and difficulty concentrating related to the VR experiment |
-| [Revised UCLA Loneliness Scale] (https://backend.fetzer.org/sites/default/files/images/stories/pdf/selfmeasures/Self_Measures_for_Loneliness_and_Interpersonal_Problems_UCLA_LONELINESS_REVISED.pdf) | Perceived Social Isolation |
-| [Center for Epidemiological Studies Depression Scale - Revised] (https://cesd-r.com/wp-content/uploads/2018/04/cesdrscale.pdf) | Depression |
-| [Davos Assessment of Cognitive Biases Scale] (https://www.sciencedirect.com/science/article/pii/S0920996412007025) | Cognitive Biases |
-| [Multidimensional Assessment of Interoceptive Awareness - 2] (https://osher.ucsf.edu/research/maia) | Subjective Interoceptive Metrics |
-| [The BIS/BAS scales] (https://www.safetylit.org/instruments/87-MVO-10-10-Ia.pdf) | Behavioural Inhibition System, Behavioural Activation System |
+| Simulation Sickness Questionnaire | Discomfort, nausea, dizziness, headache, blurred vision, and difficulty concentrating related to the VR experiment |
+| [Revised UCLA Loneliness Scale](https://backend.fetzer.org/sites/default/files/images/stories/pdf/selfmeasures/Self_Measures_for_Loneliness_and_Interpersonal_Problems_UCLA_LONELINESS_REVISED.pdf) | Perceived Social Isolation |
+| [Center for Epidemiological Studies Depression Scale - Revised](https://cesd-r.com/wp-content/uploads/2018/04/cesdrscale.pdf) | Depression |
+| [Davos Assessment of Cognitive Biases Scale](https://www.sciencedirect.com/science/article/pii/S0920996412007025) | Cognitive Biases |
+| [Multidimensional Assessment of Interoceptive Awareness - 2](https://osher.ucsf.edu/research/maia) | Subjective Interoceptive Metrics |
+| [The BIS/BAS scales](https://www.safetylit.org/instruments/87-MVO-10-10-Ia.pdf) | Behavioural Inhibition System, Behavioural Activation System |
 
 Five key phases are extracted per trial, anchored to specific events:
 
