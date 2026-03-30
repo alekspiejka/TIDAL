@@ -87,7 +87,7 @@ tidal/
 └── README.md
 ```
 
-The dataset follows [BIDS v1.11.0](https://bids-specification.readthedocs.io/) conventions. Currently **18 participants** (sub-01P through sub-18P) have been recorded.
+The dataset follows [BIDS v1.11.1](https://bids-specification.readthedocs.io/) conventions. Currently **18 participants** (sub-01P through sub-18P) have been recorded.
 
 ---
 
