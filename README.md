@@ -52,7 +52,7 @@ After the VR task, participants complete a battery of standardized online questi
 
 | Name | Main variable(s) measured |
 |---|---|
-| Demographics | Age, Sex, VR experience, coffeine intake |
+| Demographics | Age, Sex, VR experience, cardiovascular and respiratory status |
 | Simulation Sickness Questionnaire | Discomfort, nausea, dizziness, headache, blurred vision, and difficulty concentrating related to the VR experiment |
 | [Revised UCLA Loneliness Scale](https://backend.fetzer.org/sites/default/files/images/stories/pdf/selfmeasures/Self_Measures_for_Loneliness_and_Interpersonal_Problems_UCLA_LONELINESS_REVISED.pdf) | Perceived Social Isolation |
 | [Center for Epidemiological Studies Depression Scale - Revised](https://cesd-r.com/wp-content/uploads/2018/04/cesdrscale.pdf) | Depression |
@@ -60,18 +60,20 @@ After the VR task, participants complete a battery of standardized online questi
 | [Multidimensional Assessment of Interoceptive Awareness - 2](https://osher.ucsf.edu/research/maia) | Subjective Interoceptive Metrics |
 | [The BIS/BAS scales](https://www.safetylit.org/instruments/87-MVO-10-10-Ia.pdf) | Behavioural Inhibition System, Behavioural Activation System |
 
-Five key phases are extracted per trial, anchored to specific events:
+### Ecological Momentary Assessment
 
-**Triphasic Data (Full Trial Progression)**
+Next day after finishing the VR task, participants take part in a 5-day EMA study, receiving 10 prompts per day between 10:00-20:00.
 
-- **Baseline** — 3 seconds before the agent appears (`ShowAgent`)
-- **Approach** — from `ShowAgent` to `AgentStopped`
-- **Recovery** — 3 seconds after `AgentStopped`
-
-**Biphasic Data (Stop-Related)**
-
-- **Pre-stop** — 2 seconds before `AgentStopped`
-- **Post-stop** — 2 seconds after `AgentStopped`
+| Variable | Items | Scale |
+|---|---|---|
+| Positive Affect | "happy", "lively", "enthusiastic", "grateful" | 0-100 |
+| Negative Affect | "sad", "annoyed", "worried", "anxious" | 0-100 |
+| Positive Social Feelings | "belonging", "supported" | 0-100 |
+| Negative Social Feelings | "lonely", "isolated" | 0-100 |
+| Social context | "Are there any people around you?" | "no, I'm alone", "yes, people I know", "yes, people I don't know", "yes, some people I know and people I don't know" |
+| Appraisals (social/non-social) | "trustworthy", "unapproachable", "firendly", "aloof" / "pleasant", "stressful", "comfortable", "draining" | 0-100 |
+| Comfort (social/non-social) | "How comfortable does it feel?" | 0-100 |
+| Perceived (social/non-social) distance | "How far from you is the closest person?" / "How long ago you were with other people?" | 0-100 |
 
 ---
 
