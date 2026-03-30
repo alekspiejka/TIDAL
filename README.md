@@ -33,7 +33,9 @@ This project depends on several external tools and frameworks for data acquisiti
 
 ---
 
-## Experimental Design
+## Study Design
+
+### Virtual Reality Task
 
 Each participant completes **64 experimental trials** across **2 blocks** (32 trials each), preceded by 2 practice trials and separated by a break period. In each trial, a virtual agent approaches the participant, and the following data streams are recorded simultaneously:
 
@@ -43,8 +45,20 @@ Each participant completes **64 experimental trials** across **2 blocks** (32 tr
 | Eye-tracking (pupil diameter, openness) | Varjo Aero | 120 Hz | `.tsv.gz` |
 | Head movement (position, rotation) | Varjo Aero | 90 Hz | `.tsv.gz` |
 | VR events (trial markers, agent states) | Unity via LSL | Event-driven | `.tsv` / `.csv` |
-| Questionnaires (loneliness, depression, etc.) | SoSci Survey | — | `.tsv` |
-| Ecological Momentary Assessment (EMA) | m-Path | — | `.xlsx` → `.tsv` |
+
+### Questionnaires
+
+After the VR task, participants complete a battery of standardized online questionnaires using SoSci platform. The results are saved as one file with data of all participants. The file is then split into seprate `.tsv` files for each questionnaire, following the BIDS format.
+
+| Name | Main variable(s) measured |
+|---|---|
+| Demographics | Age, Sex, VR experience, coffeine intake |
+| [Simulation Sickness Questionnaire] (link) | Discomfort, nausea, dizziness, headache, blurred vision, and difficulty concentrating related to the VR experiment |
+| [Revised UCLA Loneliness Scale] (https://backend.fetzer.org/sites/default/files/images/stories/pdf/selfmeasures/Self_Measures_for_Loneliness_and_Interpersonal_Problems_UCLA_LONELINESS_REVISED.pdf) | Perceived Social Isolation |
+| [Center for Epidemiological Studies Depression Scale - Revised] (https://cesd-r.com/wp-content/uploads/2018/04/cesdrscale.pdf) | Depression |
+| [Davos Assessment of Cognitive Biases Scale] (https://www.sciencedirect.com/science/article/pii/S0920996412007025) | Cognitive Biases |
+| [Multidimensional Assessment of Interoceptive Awareness - 2] (https://osher.ucsf.edu/research/maia) | Subjective Interoceptive Metrics |
+| [The BIS/BAS scales] (https://www.safetylit.org/instruments/87-MVO-10-10-Ia.pdf) | Behavioural Inhibition System, Behavioural Activation System |
 
 Five key phases are extracted per trial, anchored to specific events:
 
