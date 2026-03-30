@@ -70,10 +70,7 @@ Next day after finishing the VR task, participants take part in a 5-day EMA stud
 | Negative Affect | "sad", "annoyed", "worried", "anxious" | 0-100 |
 | Positive Social Feelings | "belonging", "supported" | 0-100 |
 | Negative Social Feelings | "lonely", "isolated" | 0-100 |
-| Social context | "Are there any people around you?" | 1. "no, I'm alone" 
-2. "yes, people I know" 
-3. "yes, people I don't know" 
-4. "yes, some people I know and people I don't know" |
+| Social context | "Are there any people around you?" | 1. "no, I'm alone" 2. "yes, people I know" 3. "yes, people I don't know" 4. "yes, some people I know and people I don't know" |
 | Appraisals (social/non-social) | "trustworthy", "unapproachable", "firendly", "aloof" / "pleasant", "stressful", "comfortable", "draining" | 0-100 |
 | Comfort (social/non-social) | "How comfortable does it feel?" | 0-100 |
 | Perceived (social/non-social) distance | "How far from you is the closest person?" / "How long ago you were with other people?" | 0-100 |
