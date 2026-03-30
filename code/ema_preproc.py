@@ -1,9 +1,26 @@
 """
-EMA Data Preprocessing & BIDS Conversion (segmenting-style)
-==========================================================
+EMA Data Preprocessing & BIDS Conversion
+========================================
 
+This script is responsible for preprocessing Ecological Momentary Assessment (EMA) data,
+standardizing it into BIDS format, and generating both participant-level summaries and
+merged long-form datasets.
+
+Key Functionalities:
+1.  Loads raw EMA data from Excel files for configured participants.
+2.  Cleans column names and recodes scale values.
+3.  Calculates derived metrics, including composite loneliness and social/solitude appraisals.
+4.  Standardizes contexts into a fixed set of labels (alone, known, other, both).
+5.  Outputs individual-level BIDS-compliant '.tsv' and '.json' sidecar files.
+6.  Updates the BIDS 'scans.tsv' file for each session.
+7.  Aggregates all participant data to compute participant-level summaries (means, percentages)
+    and saves this as 'ema_summary.tsv'.
+8.  Merges all valid EMA data into a single long-form dataset ('merged_ema_data.tsv')
+    for downstream time-series analysis or mixed-effects modeling.
+
+Usage:
 Edit the configuration section below (participants, sessions, and paths), then run:
-    python code/ema_preproc_segmenting.py
+    python code/ema_preproc.py
 """
 # %%
 # ============================================================================
@@ -14,7 +31,7 @@ import logging
 import re
 from datetime import datetime
 from pathlib import Path
-from typing import Iterable, List, Optional
+from typing import Iterable, List, Optional, Tuple
 
 import pandas as pd
 
@@ -36,7 +53,7 @@ derivatives_dir = data_dir / "derivatives"
 # ---------------------------------------------------------
 # Define the list of subjects to process.
 # pfxs contains the subject identifiers (e.g., "01P").
-pfxs = ["01P", "02P", "03P", "04P", "05P", "06P", "07P", "08P", "09P", "10P", "11P", "12P", "13P", "14P", "15P", "16P", "17P"]
+pfxs = ["01P", "02P", "03P", "04P", "05P", "06P", "07P", "08P", "09P", "10P", "11P", "12P", "13P", "14P", "15P", "16P", "17P","18P","19P","20P"]
 subjects = [f"sub-{pfx}" for pfx in pfxs]
 
 # Define the sessions to process.
@@ -505,8 +522,8 @@ def _create_summary_sidecar(tsv_path: Path) -> None:
 # SUMMARY GENERATION: Aggregate Individual Data into Participant Summaries
 # ============================================================================
 
-def generate_ema_summary(files: List[Path]) -> pd.DataFrame:
-    """Generate per-participant summary statistics from preprocessed EMA files.
+def generate_ema_summary(files: List[Path]) -> Tuple[pd.DataFrame, pd.DataFrame]:
+    """Generate per-participant summary statistics and a merged long-form dataset from preprocessed EMA files.
 
     Combines individual-level EMA responses into participant-level summaries with:
     - Overall averages (PA, NA, loneliness, social appraisals, etc.)
@@ -517,8 +534,10 @@ def generate_ema_summary(files: List[Path]) -> pd.DataFrame:
         files: List of TSV/Excel file paths containing preprocessed EMA data.
 
     Returns:
-        DataFrame with one row per participant (ppid) and columns for all summary statistics.
-        Returns empty DataFrame if no valid files found.
+        A tuple of two DataFrames:
+        1. summary_df: One row per participant (ppid) and columns for all summary statistics.
+        2. merged_df: The fully merged long-form dataset of all valid EMA records.
+        Returns empty DataFrames if no valid files found.
     """
     all_ema = []
     for f in files:
@@ -541,7 +560,7 @@ def generate_ema_summary(files: List[Path]) -> pd.DataFrame:
         all_ema.append(df)
 
     if not all_ema:
-        return pd.DataFrame()
+        return pd.DataFrame(), pd.DataFrame()
 
     ema = pd.concat(all_ema, ignore_index=True)
 
@@ -662,7 +681,7 @@ def generate_ema_summary(files: List[Path]) -> pd.DataFrame:
     new_order = id_cols + avg_cols + context_cols + indiv_cols
     new_order = list(dict.fromkeys(new_order))
     summary = summary.loc[:, new_order]
-    return summary
+    return summary, ema
 
 # %%
 # =================================================================================================
@@ -694,7 +713,7 @@ processed_files = []
 for sub_dir in data_dir.glob("sub-*"):
     if sub_dir.is_dir():
         processed_files.extend(sub_dir.rglob("*EMA*.tsv"))
-summary_df = generate_ema_summary(processed_files)
+summary_df, merged_df = generate_ema_summary(processed_files)
 if summary_df.empty:
     LOG.warning("No EMA files found for summary; skipping summary output")
 else:
@@ -705,5 +724,12 @@ else:
     _create_summary_sidecar(out_path)
     recode_scales(summary_df)
     print(f"Saved summary table to {out_path}")
+
+    # Output merged long-form EMA data (incorporating original ema_merge.py logic)
+    merged_path = out_dir / "merged_ema_data.tsv"
+    if 'ppid' in merged_df.columns:
+        merged_df = merged_df.rename(columns={'ppid': 'participant_id'})
+    merged_df.to_csv(merged_path, sep="\t", index=False, na_rep="n/a")
+    print(f"Merged EMA data saved to {merged_path}")
 
 # %%

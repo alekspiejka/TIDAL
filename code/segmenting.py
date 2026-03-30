@@ -100,7 +100,7 @@ unity_dir = sourcedata_dir / "unity-edia"          # Location of Unity execution
 # ---------------------------------------------------------
 # Define the list of subjects to process.
 # pfxs contains the subject identifiers (e.g., "01P").
-pfxs = ["01P", "02P", "03P", "04P", "05P", "06P", "07P", "08P", "09P", "10P", "11P", "12P", "13P", "14P", "15P", "16P", "17P", "18P"]
+pfxs = ["01P", "02P", "03P", "04P", "05P", "06P", "07P", "08P", "09P", "10P", "11P", "12P", "13P", "14P", "15P", "16P", "17P", "18P", "19P", "20P"]
 #pfxs = ["01P"]
 subjects = [f"sub-{pfx}" for pfx in pfxs]
 
@@ -512,12 +512,12 @@ for subject in subjects:
                 # 6.1 Extract Data for Each Phase Window
                 # ---------------------------------------------------------
                 # Iterate through each defined window for the current phase (e.g., every Baseline window)
-                for i in range(len(window_timings)):
+                for j in range(len(window_timings)):
                     window_data = []
-                    window_start = window_timings.loc[i, 'window_start']
-                    window_end = window_timings.loc[i, 'window_end']
-                    event_time = window_timings.loc[i, 'event_time']
-                    phase = window_timings.loc[i, 'phase']
+                    window_start = window_timings.loc[j, 'window_start']
+                    window_end = window_timings.loc[j, 'window_end']
+                    event_time = window_timings.loc[j, 'event_time']
+                    phase = window_timings.loc[j, 'phase']
 
                     # Extract ECG peaks in the window
                     ecg_peaks_window = ecg_peaks_data[(ecg_peaks_data['timestamp'] >= window_start) & (ecg_peaks_data['timestamp'] <= window_end)]
@@ -542,6 +542,7 @@ for subject in subjects:
                         'subject': subject,
                         'session': session,
                         'run': run,
+                        'trial': f"Trial_{j+1}",
                         'phase': phase,
                         'window_start': window_start,
                         'event_time': event_time,
@@ -592,6 +593,12 @@ for subject in subjects:
                 # Extract head movement data in the trial
                 headmovement_trial = headmovement_data[(headmovement_data['lsl_timestamp'] >= trial_start) & (headmovement_data['lsl_timestamp'] <= trial_end)]
 
+                # Extract HR data in the trial
+                if not hr_data.empty:
+                    hr_data_trial = hr_data[(hr_data['lsl_timestamp'] >= trial_start) & (hr_data['lsl_timestamp'] <= trial_end)]
+                else:
+                    hr_data_trial = pd.DataFrame()
+
                 # Save as a dictionary:
                 trial_data = {
                     'subject': subject,
@@ -602,7 +609,7 @@ for subject in subjects:
                     'trial_start': trial_start,
                     'trial_end': trial_end,
                     'ecg_peaks': ecg_peaks_trial.to_dict(orient='list'),
-                    'hr_data': hr_data_window.to_dict(orient='list'),
+                    'hr_data': hr_data_trial.to_dict(orient='list'),
                     'eyetracking_data': eyetracking_trial.to_dict(orient='list'),
                     'headmovement_data': headmovement_trial.to_dict(orient='list')
                 }
@@ -645,6 +652,12 @@ for subject in subjects:
                 # Extract head movement data in the block
                 headmovement_block = headmovement_data[(headmovement_data['lsl_timestamp'] >= block_start) & (headmovement_data['lsl_timestamp'] <= block_end)]
 
+                # Extract HR data in the block
+                if not hr_data.empty:
+                    hr_data_block = hr_data[(hr_data['lsl_timestamp'] >= block_start) & (hr_data['lsl_timestamp'] <= block_end)]
+                else:
+                    hr_data_block = pd.DataFrame()
+
                 # Save as a dictionary:
                 block_data = {
                     'subject': subject,
@@ -655,7 +668,7 @@ for subject in subjects:
                     'block_start': block_start,
                     'block_end': block_end,
                     'ecg_peaks': ecg_peaks_block.to_dict(orient='list'),
-                    'hr_data': hr_data_window.to_dict(orient='list'),
+                    'hr_data': hr_data_block.to_dict(orient='list'),
                     'eyetracking_data': eyetracking_block.to_dict(orient='list'),
                     'headmovement_data': headmovement_block.to_dict(orient='list')
                 }

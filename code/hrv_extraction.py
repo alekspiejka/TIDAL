@@ -54,7 +54,7 @@ segmenting_dir = derivatives_dir / "segmenting"
 hrv_analysis_dir = derivatives_dir / "hrv-analysis"
 
 # Define the list of subjects
-pfxs = ["01P", "02P", "03P", "04P", "05P", "06P", "07P", "08P", "09P", "10P", "11P", "12P", "13P", "14P", "15P", "16P", "17P"]
+pfxs = ["01P", "02P", "03P", "04P", "05P", "06P", "07P", "08P", "09P", "10P", "11P", "12P", "13P", "14P", "15P", "16P", "17P", "18P", "19P", "20P"]
 subjects = [f"sub-{pfx}" for pfx in pfxs]
 
 # Define sessions
