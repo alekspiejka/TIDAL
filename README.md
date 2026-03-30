@@ -200,10 +200,8 @@ Each file contains nested dictionaries with Baseline, Approach, Recovery, pre-st
 
 ## Current Status
 
-- **18 participants** recorded (sub-01P through sub-18P)
-- **Segmentation completed** for all available subjects (except sub-16P — interrupted session)
-- **BIDS v1.11.0** compliant dataset structure
-- **Statistical Analysis and Visualization** Work in progress!
+- **20 participants** recorded (sub-01P through sub-20P)
+- **BIDS v1.11.1** compliant dataset structure
 - Active development!
 
 ---
