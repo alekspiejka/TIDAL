@@ -37,7 +37,9 @@ This project depends on several external tools and frameworks for data acquisiti
 
 ### Virtual Reality Task
 
-Each participant completes **64 experimental trials** across **2 blocks** (32 trials each), preceded by 2 practice trials and separated by a break period. In each trial, a virtual agent approaches the participant, and the following data streams are recorded simultaneously:
+Each participant completes **64 experimental trials** across **2 blocks** (32 trials each), preceded by 2 practice trials and separated by a break period. In each trial, a virtual agent approaches the participant who is asked to press a button when the distance becomes uncomfortable. Then, participant is asked to answer two questions: "How friendly the person seemed to you?" and "How uncomfortable the distance felt?" on a scale 1-5 Likert scale.
+
+During the task, the following data streams are recorded simultaneously:
 
 | Modality | Device / Source | Sampling Rate | Format |
 |---|---|---|---|
